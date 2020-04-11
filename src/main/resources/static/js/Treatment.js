@@ -7,8 +7,8 @@ function AjaxPost(Url,JsonData,LodingFun,ReturnFun) {
         dataType: 'json',
         async: 'false',
         beforeSend: LodingFun,
-        error: function () { AjaxErro({ "Status": "Erro", "Erro": "500" }); },
-        success: ReturnFun
+        success: ReturnFun,
+        error: function () { }
     });
 }
 //示例

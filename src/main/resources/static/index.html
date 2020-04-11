@@ -85,7 +85,7 @@
 		var canGetCookie = 0;//是否支持存储Cookie 0 不支持 1 支持
 		var ajaxmockjax = 1;//是否启用虚拟Ajax的请求响 0 不启用  1 启用
 		//默认账号密码
-		
+
 		var truelogin = "123456";
 		var truepwd = "123456";
 		
@@ -178,14 +178,8 @@
 	                //登录
 	                var JsonData = { login: login, pwd: pwd, code: code };
 					//此处做为ajax内部判断
-					var url = "";
-					if(JsonData.login == truelogin && JsonData.pwd == truepwd && JsonData.code.toUpperCase() == CodeVal.toUpperCase()){
-						url = "Ajax/Login";
-					}else{
-						url = "Ajax/LoginFalse";
-					}
-					
-					
+					var url = "/user/signin";
+
 	                AjaxPost(url, JsonData,
 	                                function () {
 	                                    //ajax加载中
@@ -208,11 +202,11 @@
 	                                    setTimeout(function () {
 	                                        $('.authent').hide();
 	                                        $('.login').removeClass('test');
-	                                        if (data.Status == 'ok') {
+	                                        if (data.status == '200') {
 	                                            //登录成功
 	                                            $('.login div').fadeOut(100);
 	                                            $('.success').fadeIn(1000);
-	                                            $('.success').html(data.Text);
+	                                            $('.success').html(data.data);
 												//跳转操作
 												
 	                                        } else {
