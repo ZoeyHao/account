@@ -1,22 +1,25 @@
 package com.loye.account.entity;
 
-public class User {
+import java.io.Serializable;
 
-    private int userId;
+public class User implements Serializable {
+    private Long userId;
 
     private String email;
 
-    private int mobilePhone;
+    private String mobilePhone;
 
     private String password;
 
-    private int authority;
+    private Integer authority;
 
-    public int getUserId() {
+    private static final long serialVersionUID = 1L;
+
+    public Long getUserId() {
         return userId;
     }
 
-    public void setUserId(int userId) {
+    public void setUserId(Long userId) {
         this.userId = userId;
     }
 
@@ -25,15 +28,15 @@ public class User {
     }
 
     public void setEmail(String email) {
-        this.email = email;
+        this.email = email == null ? null : email.trim();
     }
 
-    public int getMobilePhone() {
+    public String getMobilePhone() {
         return mobilePhone;
     }
 
-    public void setMobilePhone(int mobilePhone) {
-        this.mobilePhone = mobilePhone;
+    public void setMobilePhone(String mobilePhone) {
+        this.mobilePhone = mobilePhone == null ? null : mobilePhone.trim();
     }
 
     public String getPassword() {
@@ -41,17 +44,29 @@ public class User {
     }
 
     public void setPassword(String password) {
-        this.password = password;
+        this.password = password == null ? null : password.trim();
     }
 
-    public int getAuthority() {
+    public Integer getAuthority() {
         return authority;
     }
 
-    public void setAuthority(int authority) {
+    public void setAuthority(Integer authority) {
         this.authority = authority;
     }
 
-    public User() {
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append(getClass().getSimpleName());
+        sb.append(" [");
+        sb.append("Hash = ").append(hashCode());
+        sb.append(", userId=").append(userId);
+        sb.append(", email=").append(email);
+        sb.append(", mobilePhone=").append(mobilePhone);
+        sb.append(", password=").append(password);
+        sb.append(", authority=").append(authority);
+        sb.append("]");
+        return sb.toString();
     }
 }

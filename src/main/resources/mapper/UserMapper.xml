@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.loye.account.dao.UserMapper">
+  <resultMap id="BaseResultMap" type="com.loye.account.entity.User">
+    <id column="user_id" jdbcType="BIGINT" property="userId" />
+    <result column="email" jdbcType="VARCHAR" property="email" />
+    <result column="mobile_phone" jdbcType="VARCHAR" property="mobilePhone" />
+    <result column="password" jdbcType="VARCHAR" property="password" />
+    <result column="authority" jdbcType="INTEGER" property="authority" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    user_id, email, mobile_phone, password, authority
+  </sql>
+  <insert id="insert" parameterType="com.loye.account.entity.User">
+    insert into loye_user (user_id, email, mobile_phone,
+      password, authority)
+    values (#{userId,jdbcType=BIGINT}, #{email,jdbcType=VARCHAR}, #{mobilePhone,jdbcType=INTEGER},
+      #{password,jdbcType=VARCHAR}, #{authority,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.loye.account.entity.User">
+    insert into loye_user
+        user_id,
+        email,
+        mobile_phone,
+        password,
+        authority,
+        #{userId,jdbcType=BIGINT},
+        #{email,jdbcType=VARCHAR},
+        #{mobilePhone,jdbcType=INTEGER},
+        #{password,jdbcType=VARCHAR},
+        #{authority,jdbcType=INTEGER},
+  </insert>
+
+  <update id="updateByPrimaryKeySelective" parameterType="com.loye.account.entity.User">
+    update loye_user
+        email = #{email,jdbcType=VARCHAR},
+        mobile_phone = #{mobilePhone,jdbcType=INTEGER},
+        password = #{password,jdbcType=VARCHAR},
+        authority = #{authority,jdbcType=INTEGER},
+    where user_id = #{userId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.loye.account.entity.User">
+    update loye_user
+    set email = #{email,jdbcType=VARCHAR},
+      mobile_phone = #{mobilePhone,jdbcType=INTEGER},
+      password = #{password,jdbcType=VARCHAR},
+      authority = #{authority,jdbcType=INTEGER}
+    where user_id = #{userId,jdbcType=BIGINT}
+  </update>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from loye_user
+    where user_id = #{userId,jdbcType=BIGINT}
+  </delete>
+
+  <select id="signInByEmail" resultMap="BaseResultMap">
+    select password,authority
+    from loye_user
+    where email= #{email,jdbcType=VARCHAR}
+  </select>
+
+
+  <select id="getUserByMobilePhone" resultMap="BaseResultMap">
+    select password,authority
+    from loye_user
+    where mobile_phone= #{mobile_phone,jdbcType=VARCHAR}
+  </select>
+
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select password,authority
+    from loye_user
+    where user_id = #{userId,jdbcType=BIGINT}
+  </select>
+</mapper>
