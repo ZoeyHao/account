@@ -32,8 +32,7 @@ function ErroAlert(e) {
 
 //Ajax 错误返回处理
 function AjaxErro(e) {
-    if (e.Status == "Erro") {
-        switch (e.Erro) {
+        switch (e.status) {
             case "500":
                 top.location.href = '/Erro/Erro500';
                 break;
@@ -41,10 +40,13 @@ function AjaxErro(e) {
                 ErroAlert("错误 : 错误代码 '10001'");
                 break;
             default:
-                ErroAlert(e.Erro);
+                ErroAlert(e.error);
         }
-    } else {
-        layer.msg("未知错误！");
+}
+
+function SigninError(e) {
+    if(e.status=="417"){
+        ErroAlert(e.error);
     }
 }
 

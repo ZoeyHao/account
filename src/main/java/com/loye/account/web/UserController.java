@@ -20,13 +20,13 @@ public class UserController {
     @ResponseBody
     @RequestMapping(value="/signin",method = RequestMethod.POST)
     private Result signin(String login,String pwd,String code){
-        Result<String> res=new Result();
-        if(userService.signInByEmail(login,pwd)){
-            res.setSuccess(true);
-            res.setStatus(200);
-            res.setData("登录成功，功能待开发中!");
+        Result<String> res=new Result(200,"");
+        if(!userService.signInByEmail(login,pwd)) {
+            res.setStatus(417);
+            res.setError("账号或密码错误，请重新输入");
+            return res;
         }
-        res.setError("账号或者密码错误");
+        res.setData("登录成功，功能待开发中!");
         return res;
     }
 

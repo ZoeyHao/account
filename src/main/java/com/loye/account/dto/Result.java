@@ -4,9 +4,6 @@ package com.loye.account.dto;
  * 封装json对象，所有返回结果都使用它
  */
 public class Result<T> {
-
-    private boolean success;// 是否成功标志
-
     private int status;
 
     private T data;// 成功时返回的数据
@@ -17,15 +14,9 @@ public class Result<T> {
     }
 
     // 成功时的构造器
-    public Result(boolean success, T data) {
-        this.success = success;
+    public Result(int status, T data) {
+        this.status = status;
         this.data = data;
-    }
-
-    // 错误时的构造器
-    public Result(boolean success, String error) {
-        this.success = success;
-        this.error = error;
     }
 
     public int getStatus() {
@@ -34,14 +25,6 @@ public class Result<T> {
 
     public void setStatus(int status) {
         this.status = status;
-    }
-
-    public boolean isSuccess() {
-        return success;
-    }
-
-    public void setSuccess(boolean success) {
-        this.success = success;
     }
 
     public T getData() {
@@ -58,11 +41,6 @@ public class Result<T> {
 
     public void setError(String error) {
         this.error = error;
-    }
-
-    @Override
-    public String toString() {
-        return "JsonResult [success=" + success + ", data=" + data + ", error=" + error + "]";
     }
 
 }

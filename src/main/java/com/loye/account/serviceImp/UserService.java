@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class UserService implements IUserService {
 
-    @Autowired
+    @Autowired(required = false)
     private UserMapper userDao;
 
     /*public static IUserService getInstance(){
