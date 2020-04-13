@@ -58,7 +58,7 @@ $('input[name="login"],input[name="pwd"]').keyup(function () {
 var open = 0;
 layui.use('layer', function () {
     //非空验证
-    $('input[type="button"]').click(function () {
+    $('input[id="signinBtn"]').click(function () {
         var login = $('input[name="login"]').val();
         var pwd = $('input[name="pwd"]').val();
         var code = $('input[name="code"]').val();
@@ -109,7 +109,7 @@ layui.use('layer', function () {
                             queue: false
                         }).addClass('visible');
                         $('.login').removeClass('testtwo'); //平移特效
-                    }, 2000);
+                    }, 1000);
                     setTimeout(function () {
                         $('.authent').hide();
                         $('.login').removeClass('test');
@@ -129,6 +129,24 @@ layui.use('layer', function () {
         }
     })
 })
+
+var jumpeffects=function () {
+    $('.login').addClass('test'); //倾斜特效
+    setTimeout(function () {
+        $('.login').addClass('testtwo'); //平移特效
+    }, 300);
+    setTimeout(function () {
+        $('.authent').show().animate({ right: -320 }, {
+            easing: 'easeOutQuint',
+            duration: 600,
+            queue: false
+        });
+        $('.authent').animate({ opacity: 1 }, {
+            duration: 200,
+            queue: false
+        }).addClass('visible');
+    }, 500);
+}
 
 /*var fullscreen = function () {
 	        elem = document.body;

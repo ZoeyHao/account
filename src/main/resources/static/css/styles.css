@@ -166,10 +166,28 @@ body .login_fields input[type='text'], body .login_fields input[type='password']
 body .login_fields__user, body .login_fields__password {
   position: relative;
 }
+body .login_fields__a {
+  position: relative;
+  color: #ffffff;
+  top: 40px;
+  left: 20%;
+  width: 80%;
+  right: 0;
+  margin: auto;
+}
+body .login_fields__a2 {
+  position: relative;
+  color: #ffffff;
+  top: 40px;
+  left: 50%;
+  width: 80%;
+  right: 0;
+  margin: auto;
+}
 body .login_fields__submit {
   position: relative;
   top: 17px;
-  left: 0;
+  left: 20%;
   width: 80%;
   right: 0;
   margin: auto;
